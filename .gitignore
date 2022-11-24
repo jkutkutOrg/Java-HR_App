@@ -1,0 +1,9 @@
+.env
+
+*.swp
+
+out/
+target/
+.idea/
+res/
+
