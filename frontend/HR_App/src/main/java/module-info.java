@@ -6,8 +6,8 @@ module org.jkutkut.hr_app {
 
     opens org.jkutkut.hr_app to javafx.fxml;
     exports org.jkutkut.hr_app;
-    exports org.jkutkut;
-    opens org.jkutkut to javafx.fxml;
-    exports org.jkutkut.db;
+    opens org.jkutkut.exception to javafx.fxml;
+    exports org.jkutkut.exception;
     opens org.jkutkut.db to javafx.fxml;
+    exports org.jkutkut.db;
 }
