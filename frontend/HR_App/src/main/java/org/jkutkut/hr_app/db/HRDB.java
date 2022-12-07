@@ -1,9 +1,13 @@
 package org.jkutkut.hr_app.db;
 
 import org.jkutkut.db.PostgreSQLDB;
+import org.jkutkut.db.SQLQuery;
 import org.jkutkut.exception.InvalidDataException;
+import org.jkutkut.hr_app.javabean.Employee;
 
 import java.io.File;
+import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  * Class with logic to interact with the HR database.
@@ -43,6 +47,36 @@ public class HRDB extends PostgreSQLDB {
                 return path + ENV_FILE;
         }
         return null;
+    }
+
+    // *********** METHODS ***********
+
+    private static final String EMPLOYEE_TABLE = "EMPLOYEE";
+
+    public ArrayList<Employee> getAllEmployees() {
+        return sql2Employees(SQLQuery.get(this, 11, "SELECT * FROM " + Employee.TABLE_NAME));
+    }
+
+    private ArrayList<Employee> sql2Employees(ArrayList<Object[]> data) {
+        ArrayList<Employee> employees = new ArrayList<>();
+        for (Object[] row : data) {
+            employees.add(new Employee(
+                    (int) row[0], // id
+                    (String) row[1], // first_name
+                    (String) row[2], // last_name
+                    (String) row[3], // email
+                    (String) row[4], // phone_number
+                    (Date) row[5], // hire_date
+                    (String) row[6], // job_id
+//                    (int) row[7], // salary
+                    0, // TODO change DB from BigDecimal to int
+//                    (double) row[8], // commission_pct
+                    0, // TODO change DB from BigDecimal to double
+                    (int) row[9], // manager_id
+                    (int) row[10] // department_id
+            ));
+        }
+        return employees;
     }
 }
 
