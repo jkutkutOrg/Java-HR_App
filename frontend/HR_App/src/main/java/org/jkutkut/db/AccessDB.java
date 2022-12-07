@@ -4,12 +4,33 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class AccessDB {
+abstract public class AccessDB {
     private final String driver;
-    private final String url;
+    private String url;
 
+    /**
+     * Constructor 1
+     *
+     * @implNote Do not forget to add the url with setUrl() method.
+     *
+     * @param driver The driver to use.
+     */
+    public AccessDB(String driver) {
+        this.driver = driver;
+    }
+
+    /**
+     * Constructor 2
+     * @param driver The driver to use.
+     * @param url The url to connect to.
+     */
     public AccessDB(String driver, String url) {
         this.driver = driver;
+        this.url = url;
+    }
+
+    // SETTERS
+    protected void setUrl(String url) {
         this.url = url;
     }
 
