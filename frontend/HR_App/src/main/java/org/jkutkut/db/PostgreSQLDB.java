@@ -1,28 +1,23 @@
 package org.jkutkut.db;
 
+import org.jkutkut.db.configuration.Configurator;
+import org.jkutkut.db.configuration.ConfiguratorDB;
+
 import java.sql.Connection;
 import java.sql.SQLException;
+
+import static org.jkutkut.db.configuration.ConfiguratorDB.*;
 
 public class PostgreSQLDB extends AccessDB {
 
     private static final String DRIVER = "org.postgresql.Driver";
+    private final Configurator config;
 
-    private final String ip;
-    private final String port;
-    private final String user;
-    private final String pass;
-
-
-    public PostgreSQLDB(String ip, String port, String user, String pass) {
+    public PostgreSQLDB(String configurationFilename) {
         super(DRIVER);
-
-        this.ip = ip;
-        this.port = port;
-        this.user = user;
-        this.pass = pass;
+        config = new ConfiguratorDB(configurationFilename);
 
         setUrl(getUrl());
-        System.out.println(getUrl());
     }
 
     private String getUrl() {
@@ -32,14 +27,31 @@ public class PostgreSQLDB extends AccessDB {
         return String.format(
             "%s%s:%s%s",
             POSTGRESQL_URL_BEGIN,
-            ip,
-            port,
+            getIP(),
+            getPort(),
             POSTGRESQL_URL_END
         );
     }
 
+    // ********** GETTERS **********
     @Override
     public Connection getConnection() throws ClassNotFoundException, SQLException {
-        return super.getConnection(user, pass);
+        return super.getConnection(getUser(), getPassword());
+    }
+
+    protected String getUser() {
+        return config.get(USER_KEY);
+    }
+
+    protected String getPassword() {
+        return config.get(PASS_KEY);
+    }
+
+    protected String getIP() {
+        return config.get(IP_KEY);
+    }
+
+    protected String getPort() {
+        return config.get(PORT_KEY);
     }
 }

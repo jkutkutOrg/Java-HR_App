@@ -9,8 +9,6 @@ abstract public class AccessDB {
     private String url;
 
     /**
-     * Constructor 1
-     *
      * @implNote Do not forget to add the url with setUrl() method.
      *
      * @param driver The driver to use.
@@ -20,19 +18,20 @@ abstract public class AccessDB {
     }
 
     /**
-     * Constructor 2
      * @param driver The driver to use.
      * @param url The url to connect to.
      */
     public AccessDB(String driver, String url) {
-        this.driver = driver;
+        this(driver);
         this.url = url;
     }
 
-    // SETTERS
+    // ************ SETTERS ************
     protected void setUrl(String url) {
         this.url = url;
     }
+
+    // ************ GETTERS ************
 
     public Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName(driver);

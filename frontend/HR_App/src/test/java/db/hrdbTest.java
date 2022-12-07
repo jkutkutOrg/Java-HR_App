@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class hrdbTest {
     public static void main(String[] args) {
-        HRDB db = new HRDB();
+        HRDB db = HRDB.createInstance();
 
         for (Object[] row : selectTest(db)) {
             for (Object col : row) {
