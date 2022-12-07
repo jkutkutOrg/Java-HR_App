@@ -2,6 +2,9 @@ package org.jkutkut.db.configuration;
 
 import org.jkutkut.exception.InvalidDataException;
 
+/**
+ * Class that contains the configuration needed to connect to a database.
+ */
 public class ConfiguratorDB extends Configurator {
     public static final String IP_KEY = "DB_IP";
     public static final String PORT_KEY = "DB_PORT";
@@ -20,6 +23,10 @@ public class ConfiguratorDB extends Configurator {
         this(filename, "localhost");
     }
 
+    /**
+     * Validates the configuration file.
+     * @throws InvalidDataException If any of the required keys is missing or invalid.
+     */
     @Override
     protected void validate() throws InvalidDataException {
         for (String key : REQUIRED_KEYS) {

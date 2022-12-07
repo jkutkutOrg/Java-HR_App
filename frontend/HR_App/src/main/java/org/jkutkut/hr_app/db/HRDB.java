@@ -5,6 +5,11 @@ import org.jkutkut.exception.InvalidDataException;
 
 import java.io.File;
 
+/**
+ * Class with logic to interact with the HR database.
+ *
+ * @implNote This class should be instantiated by a method, not by calling the constructor.
+ */
 public class HRDB extends PostgreSQLDB {
 
     private static final String ENV_FILE = ".env";
@@ -14,6 +19,11 @@ public class HRDB extends PostgreSQLDB {
         super(configurationFilename);
     }
 
+    /**
+     * Standard way to create an instance of this class.
+     * @return an instance of this class.
+     * @throws InvalidDataException if the configuration file needed is not found.
+     */
     public static HRDB createInstance() {
         String path = getConfigurationPath();
         if (path == null)
@@ -21,6 +31,10 @@ public class HRDB extends PostgreSQLDB {
         return new HRDB(path);
     }
 
+    /**
+     * Get the path to the configuration file.
+     * @return the path to the configuration file or null.
+     */
     private static String getConfigurationPath() {
         File f;
         for (String path : PATHS) {

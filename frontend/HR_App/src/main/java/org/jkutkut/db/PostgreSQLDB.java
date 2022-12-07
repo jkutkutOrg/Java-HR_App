@@ -8,29 +8,22 @@ import java.sql.SQLException;
 
 import static org.jkutkut.db.configuration.ConfiguratorDB.*;
 
+/**
+ * Class to interact with PostgreSQL databases.
+ */
 public class PostgreSQLDB extends AccessDB {
 
     private static final String DRIVER = "org.postgresql.Driver";
     private final Configurator config;
 
-    public PostgreSQLDB(String configurationFilename) {
+    public PostgreSQLDB(Configurator config) {
         super(DRIVER);
-        config = new ConfiguratorDB(configurationFilename);
-
+        this.config = config;
         setUrl(getUrl());
     }
 
-    private String getUrl() {
-        final String POSTGRESQL_URL_BEGIN = "jdbc:postgresql://";
-        final String POSTGRESQL_URL_END = "/postgres";
-
-        return String.format(
-            "%s%s:%s%s",
-            POSTGRESQL_URL_BEGIN,
-            getIP(),
-            getPort(),
-            POSTGRESQL_URL_END
-        );
+    public PostgreSQLDB(String configurationFilename) {
+        this(new ConfiguratorDB(configurationFilename));
     }
 
     // ********** GETTERS **********
@@ -53,5 +46,18 @@ public class PostgreSQLDB extends AccessDB {
 
     protected String getPort() {
         return config.get(PORT_KEY);
+    }
+
+    private String getUrl() {
+        final String POSTGRESQL_URL_BEGIN = "jdbc:postgresql://";
+        final String POSTGRESQL_URL_END = "/postgres";
+
+        return String.format(
+                "%s%s:%s%s",
+                POSTGRESQL_URL_BEGIN,
+                getIP(),
+                getPort(),
+                POSTGRESQL_URL_END
+        );
     }
 }

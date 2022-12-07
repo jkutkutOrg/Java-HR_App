@@ -7,6 +7,9 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Class with the logic needed to read, parse and store the data in a configuration file.
+ */
 public class Configurator {
     protected final HashMap<String, String> config;
 
@@ -15,6 +18,10 @@ public class Configurator {
         parse(filename);
     }
 
+    /**
+     * Parses the configuration file and stores it into the instance.
+     * @param filename The name of the configuration file.
+     */
     protected void parse(String filename) {
         if (!validFileName(filename))
             throw new InvalidDataException("Invalid file name.");
@@ -42,14 +49,33 @@ public class Configurator {
         }
     }
 
+    /**
+     * Validates the configuration file.
+     * @throws InvalidDataException If the configuration file is not valid.
+     */
     protected void validate() throws InvalidDataException {}
 
+    /**
+     * Checks if the file name is valid.
+     * @param file The name of the file.
+     * @return True if the file name is valid, false otherwise.
+     */
     protected boolean validFileName(String file) {
         return (file != null && file.trim().endsWith(".env"));
     }
 
     // *********** GETTERS ***********
+
+    /**
+     * @param key The key of the value to get.
+     * @return The value associated with the key.
+     * @throws InvalidDataException If the key does not exist or the key is invalid.
+     */
     public String get(String key) {
+        if (key == null)
+            throw new InvalidDataException("Key can not be null.");
+        if (!config.containsKey(key))
+            throw new InvalidDataException("Key does not exist.");
         return config.get(key);
     }
 }
