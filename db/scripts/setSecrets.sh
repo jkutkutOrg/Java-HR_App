@@ -5,6 +5,10 @@ askPassword() {
 	while true; do
 		read -s -p "Password for $concept: " PASSWD;
 		echo;
+		if [ "$PASSWD" = "" ]; then
+			echo "The password must not be empty";
+			continue;
+		fi
 		read -s -p "Confirm password : " PASSWD_CONFIRM;
 		echo;
 		if [ "$PASSWD" = "$PASSWD_CONFIRM" ]; then
