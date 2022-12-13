@@ -12,7 +12,7 @@ public class Employee {
     private final StringProperty phone;
     private final ObjectProperty<Date> hireDate;
     private final StringProperty jobId;
-    private final IntegerProperty salary;
+    private final DoubleProperty salary;
     private final DoubleProperty commissionPct;
     private final IntegerProperty managerId;
     private final IntegerProperty departmentId;
@@ -40,14 +40,14 @@ public class Employee {
         this.phone = new SimpleStringProperty();
         this.hireDate = new SimpleObjectProperty<>();
         this.jobId = new SimpleStringProperty();
-        this.salary = new SimpleIntegerProperty();
+        this.salary = new SimpleDoubleProperty();
         this.commissionPct = new SimpleDoubleProperty();
         this.managerId = new SimpleIntegerProperty();
         this.departmentId = new SimpleIntegerProperty();
     }
 
     public Employee(int id, String firstName, String lastName, String email, String phone, Date hireDate,
-                    String jobId, int salary, double commissionPct, int managerId, int departmentId) {
+                    String jobId, double salary, double commissionPct, int managerId, int departmentId) {
         this();
         this.id.set(id);
         this.firstName.set(firstName);
@@ -119,11 +119,11 @@ public class Employee {
         return jobId;
     }
 
-    public int getSalary() {
+    public double getSalary() {
         return salary.get();
     }
 
-    public IntegerProperty salaryProperty() {
+    public DoubleProperty salaryProperty() {
         return salary;
     }
 

@@ -68,10 +68,8 @@ public class HRDB extends PostgreSQLDB {
                     (String) row[4], // phone_number
                     (Date) row[5], // hire_date
                     (String) row[6], // job_id
-//                    (int) row[7], // salary
-                    0, // TODO change DB from BigDecimal to int
-//                    (double) row[8], // commission_pct
-                    0, // TODO change DB from BigDecimal to double
+                    (double) row[7], // salary
+                    (double) row[8], // commission_pct
                     (int) row[9], // manager_id
                     (int) row[10] // department_id
             ));

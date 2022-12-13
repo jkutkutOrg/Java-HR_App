@@ -6,7 +6,7 @@ import org.jkutkut.hr_app.javabean.Employee;
 
 import java.util.ArrayList;
 
-public class hrdbTest {
+public class HrdbTest {
     public static void main(String[] args) {
         HRDB db = HRDB.createInstance();
 
