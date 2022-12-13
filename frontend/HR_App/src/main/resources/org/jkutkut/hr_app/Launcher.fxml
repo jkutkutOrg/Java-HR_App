@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.jkutkut.hr_app.LauncherController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jkutkut.hr_app.AdvancedSearchController">
+   <children>
+      <TableView layoutX="24.0" layoutY="71.0" prefHeight="307.0" prefWidth="549.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="C1" />
+            <TableColumn prefWidth="75.0" text="C2" />
+         </columns>
+      </TableView>
+      <Button layoutX="57.0" layoutY="23.0" mnemonicParsing="false" text="Search All" />
+      <Button layoutX="184.0" layoutY="23.0" mnemonicParsing="false" text="Update" />
+      <Button layoutX="299.0" layoutY="23.0" mnemonicParsing="false" text="Delete" />
+   </children>
+</AnchorPane>

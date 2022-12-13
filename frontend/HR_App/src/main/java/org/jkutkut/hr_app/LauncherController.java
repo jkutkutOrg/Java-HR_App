@@ -8,7 +8,26 @@ public class LauncherController {
     private Label welcomeText;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    protected void onAdvancedSearchMenuClick() {
+
+
+
+
+    }
+
+
+
+    @FXML
+    protected void onAddEmployeeMenuClick() {
+
+
+    }
+
+
+
+    @FXML
+    protected void onMainActionsMenuClick() {
+
+
     }
 }
