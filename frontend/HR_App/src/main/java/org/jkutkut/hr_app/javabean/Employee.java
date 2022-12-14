@@ -5,6 +5,9 @@ import org.jkutkut.hr_app.utils.CustomDate;
 
 import java.sql.Date;
 
+/**
+ * Class representing an employee in a JavaFX application.
+ */
 public class Employee {
     private final IntegerProperty id;
     private final StringProperty firstName;
@@ -30,7 +33,7 @@ public class Employee {
     public static final String MANAGER_ID = "MANAGER_ID";
     public static final String DEPARTMENT_ID = "DEPARTMENT_ID";
 
-    public static final String[] ATRIBUTES = {
+    public static final String[] ATTRIBUTES = {
         ID,
         FIRST_NAME,
         LAST_NAME,

@@ -9,6 +9,9 @@ import org.jkutkut.javafx.Controller;
 
 import java.util.ArrayList;
 
+/**
+ * Controller for the list view.
+ */
 public class ListController extends Controller {
     // ********** Constants and variables **********
     public static final String XML = "view/list.fxml";
@@ -56,6 +59,11 @@ public class ListController extends Controller {
         table.setPlaceholder(new Label(""));
     }
 
+    /**
+     * Initializes the controller class.
+     *
+     * Note: This method is automatically called after the fxml file has been loaded.
+     */
     @FXML
     public void initialize() {
         idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asString());
@@ -71,6 +79,9 @@ public class ListController extends Controller {
         departmentIdColumn.setCellValueFactory(cellData -> cellData.getValue().departmentIdProperty().asString());
     }
 
+    /**
+     * Handles the searchAll Button.
+     */
     @FXML
     public void handleSearchAll() {
         ArrayList<Employee> employees = db.getAllEmployees();
@@ -78,6 +89,9 @@ public class ListController extends Controller {
         table.getItems().addAll(employees);
     }
 
+    /**
+     * Handles the edit button.
+     */
     @FXML
     public void handleEdit() {
         Employee employee = getSelectedEmployee();
@@ -94,6 +108,9 @@ public class ListController extends Controller {
         table.refresh();
     }
 
+    /**
+     * Handles the delete button.
+     */
     @FXML
     public void handleDelete() {
         Employee employee = getSelectedEmployee();
@@ -114,6 +131,9 @@ public class ListController extends Controller {
         }
     }
 
+    /**
+     * Handles the search button.
+     */
     @FXML
     public void handleSearch() {
         int searchBy = searchMenu.getSelectionModel().getSelectedIndex();

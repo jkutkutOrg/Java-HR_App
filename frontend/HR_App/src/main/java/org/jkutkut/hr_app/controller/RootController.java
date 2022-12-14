@@ -33,16 +33,25 @@ public class RootController extends Controller {
         }
     }
 
+    /**
+     * Opens a dialog to show the information about the app.
+     */
     @FXML
     private void handleAbout() {
         mainApp.info(MainApp.APP_NAME, "About", "Authors: Kiol12 and Jkutkut. Based on the JavaFX tutorial by SWTESTACADEMY.");
     }
 
+    /**
+     * Handles the press of the list option.
+     */
     @FXML
     private void handleList() {
         mainApp.go2("list");
     }
 
+    /**
+     * Handles the press of the access option.
+     */
     @FXML
     private void handleAdd() {
         mainApp.go2("add");

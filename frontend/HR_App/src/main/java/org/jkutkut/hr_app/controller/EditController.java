@@ -9,6 +9,9 @@ import org.jkutkut.hr_app.utils.DateUtil;
 import org.jkutkut.hr_app.utils.EmployeePolicy;
 import org.jkutkut.javafx.Controller;
 
+/**
+ * Controller for the Edit Employee view.
+ */
 public class EditController extends Controller {
     // ********** Constants and variables **********
     public static final String XML = "view/editEmployee.fxml";
@@ -57,11 +60,18 @@ public class EditController extends Controller {
         txtfDepartmentId.setText(String.format("%d", employee.getDepartmentId()));
     }
 
+    /**
+     * Handles the reset button.
+     */
     @FXML
     public void handleClear(){
         reset();
     }
 
+    /**
+     * Handles the Save button.
+     */
+    @FXML
     public void handleSave() {
         if (inputValid()) {
             Employee newEmployee = new Employee();
@@ -86,6 +96,11 @@ public class EditController extends Controller {
         }
     }
 
+    /**
+     * Checks if the user input is valid.
+     * Alerts the user if the input is not valid.
+     * @return true if the input is valid. False otherwise.
+     */
     public boolean inputValid() {
         EmployeePolicy policy = new EmployeePolicy();
         String error = policy.test(
@@ -108,6 +123,9 @@ public class EditController extends Controller {
         }
     }
 
+    /**
+     * Handles the Cancel button.
+     */
     public void handleCancel() {
         dialogStage.close();
     }

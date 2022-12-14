@@ -56,10 +56,19 @@ public class HRDB extends PostgreSQLDB {
 
     // *********** METHODS ***********
 
+    /**
+     * Get all employees from the database.
+     * @return an ArrayList with all employees.
+     */
     public ArrayList<Employee> getAllEmployees() {
         return sql2Employees(SQLQuery.get(this, 11, "SELECT * FROM " + Employee.TABLE_NAME));
     }
 
+    /**
+     * Add an employee to the database.
+     * @param employee the employee to be added.
+     * @return SUCCESS if the employee was added, FAILURE otherwise.
+     */
     public int addEmployee(Employee employee) {
         int id = getNewId();
         String query = String.format(
@@ -95,6 +104,11 @@ public class HRDB extends PostgreSQLDB {
         return FAILURE;
     }
 
+    /**
+     * Deletes the given employee from the database.
+     * @param employee the employee to be deleted.
+     * @return SUCCESS if the employee was deleted, FAILURE otherwise.
+     */
     public int deleteEmployee(Employee employee) {
         String query = String.format(
                 "DELETE FROM %s WHERE %s = ?",
@@ -107,6 +121,12 @@ public class HRDB extends PostgreSQLDB {
         return FAILURE;
     }
 
+    /**
+     * Updates the given employee in the database.
+     * @param old the old employee.
+     * @param updated the updated employee.
+     * @return SUCCESS if the employee was updated, FAILURE otherwise.
+     */
     public int updateEmployee(Employee old, Employee updated) {
         String query = String.format(
                 "UPDATE %s SET %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ? WHERE %s = ?",
@@ -123,7 +143,6 @@ public class HRDB extends PostgreSQLDB {
                 Employee.DEPARTMENT_ID,
                 Employee.ID
         );
-
         int result = SQLQuery.execute(this, query,
                 updated.getFirstName(),
                 updated.getLastName(),
@@ -142,6 +161,10 @@ public class HRDB extends PostgreSQLDB {
         return FAILURE;
     }
 
+    /**
+     * Obtains the next id to be used in the database.
+     * @return the next id to be used in the database.
+     */
     private int getNewId() {
         String query = String.format(
                 "SELECT MAX(%s) FROM %s",
@@ -151,30 +174,16 @@ public class HRDB extends PostgreSQLDB {
         return (int) SQLQuery.get(this, 1, query).get(0)[0] + 1;
     }
 
-    private ArrayList<Employee> sql2Employees(ArrayList<Object[]> data) {
-        ArrayList<Employee> employees = new ArrayList<>();
-        for (Object[] row : data) {
-            employees.add(new Employee(
-                    (int) row[0], // id
-                    (String) row[1], // first_name
-                    (String) row[2], // last_name
-                    (String) row[3], // email
-                    (String) row[4], // phone_number
-                    CustomDate.fromDate((Date) row[5]), // hire_date
-                    (String) row[6], // job_id
-                    (double) row[7], // salary
-                    (double) row[8], // commission_pct
-                    (int) row[9], // manager_id
-                    (int) row[10] // department_id
-            ));
-        }
-        return employees;
-    }
-
+    /**
+     * Search for employees in the database.
+     * @param keyIndex Attribute to search for.
+     * @param value Value to search for.
+     * @return an ArrayList of employees.
+     */
     public ArrayList<Employee> searchBy(int keyIndex, String value) {
-        if (keyIndex < 0 || keyIndex >= Employee.ATRIBUTES.length)
+        if (keyIndex < 0 || keyIndex >= Employee.ATTRIBUTES.length)
             throw new InvalidDataException("Invalid key.");
-        String key = Employee.ATRIBUTES[keyIndex];
+        String key = Employee.ATTRIBUTES[keyIndex];
         Object valueObject;
         try {
             switch (keyIndex) {
@@ -206,6 +215,31 @@ public class HRDB extends PostgreSQLDB {
                 key
         );
         return sql2Employees(SQLQuery.get(this, 11, query, valueObject));
+    }
+
+    /**
+     * Converts the result of a SQL query to an ArrayList of employees.
+     * @param data the result of a SQL query.
+     * @return an ArrayList of employees.
+     */
+    private ArrayList<Employee> sql2Employees(ArrayList<Object[]> data) {
+        ArrayList<Employee> employees = new ArrayList<>();
+        for (Object[] row : data) {
+            employees.add(new Employee(
+                    (int) row[0], // id
+                    (String) row[1], // first_name
+                    (String) row[2], // last_name
+                    (String) row[3], // email
+                    (String) row[4], // phone_number
+                    CustomDate.fromDate((Date) row[5]), // hire_date
+                    (String) row[6], // job_id
+                    (double) row[7], // salary
+                    (double) row[8], // commission_pct
+                    (int) row[9], // manager_id
+                    (int) row[10] // department_id
+            ));
+        }
+        return employees;
     }
 }
 

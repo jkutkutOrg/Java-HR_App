@@ -5,6 +5,9 @@ import org.jkutkut.inputPolicy.UserPolicy;
 
 import java.util.ArrayList;
 
+/**
+ * Class with the logic to validate the data for an employee.
+ */
 public class EmployeePolicy {
 
     /**
@@ -45,6 +48,20 @@ public class EmployeePolicy {
         this.hireDatePolicy = new DatePolicy();
     }
 
+    /**
+     * Validates the data of an employee.
+     * @param firstName The first name of the employee.
+     * @param lastName The last name of the employee.
+     * @param email The email of the employee.
+     * @param phone The phone number of the employee.
+     * @param hireDate The hire date of the employee.
+     * @param jobId The job id of the employee.
+     * @param salary The salary of the employee.
+     * @param commissionPct The commission percentage of the employee.
+     * @param managerId The manager id of the employee.
+     * @param departmentId The department id of the employee.
+     * @return A list of errors. If the list is empty, there are no errors.
+     */
     public String test(String firstName, String lastName, String email, String phone, String hireDate,
                        String jobId, String salary, String commissionPct, String managerId, String departmentId) {
         ArrayList<String> errors = new ArrayList<>();

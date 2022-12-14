@@ -44,11 +44,10 @@ public class LoginController extends Controller {
         String pass = password.getText();
 
         ConfiguratorDB configuratorDB = new ConfiguratorDB("../../db/.env", "localhost");
-//        if (configuratorDB.get("DB_USR").equals(user) && configuratorDB.get("DB_USR_PASSWD").equals(pass)) {
-//            mainApp.login();
-//        } else {
-//            mainApp.error("Login error", "Invalid credentials", "Please, check your credentials");
-//        }
-        mainApp.login(); // TODO remove this line
+        if (configuratorDB.get("DB_USR").equals(user) && configuratorDB.get("DB_USR_PASSWD").equals(pass)) {
+            mainApp.login();
+        } else {
+            mainApp.error("Login error", "Invalid credentials", "Please, check your credentials");
+        }
     }
 }

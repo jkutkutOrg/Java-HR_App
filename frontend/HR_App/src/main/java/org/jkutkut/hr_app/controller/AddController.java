@@ -9,6 +9,9 @@ import org.jkutkut.hr_app.utils.DateUtil;
 import org.jkutkut.hr_app.utils.EmployeePolicy;
 import org.jkutkut.javafx.Controller;
 
+/**
+ * Controller class for the menu to add a new employee.
+ */
 public class AddController extends Controller {
     // ********** Constants and variables **********
     public static final String XML = "view/addEmployee.fxml";
@@ -54,11 +57,18 @@ public class AddController extends Controller {
         txtfDepartmentId.setText("");
     }
 
+    /**
+     * Handles the clear button.
+     */
     @FXML
     public void handleClear(){
         reset();
     }
 
+    /**
+     * Handles the Save button.
+     */
+    @FXML
     public void handleSave() {
         if (inputValid()) {
             employee.setFirstName(txtfFirstName.getText());
@@ -82,6 +92,11 @@ public class AddController extends Controller {
         }
     }
 
+    /**
+     * Checks if the input is valid.
+     * Alerts the user if the input is not valid.
+     * @return true if the input is valid, false otherwise.
+     */
     public boolean inputValid() {
         EmployeePolicy policy = new EmployeePolicy();
         String error = policy.test(
@@ -104,6 +119,9 @@ public class AddController extends Controller {
         }
     }
 
+    /**
+     * Handles the Cancel button.
+     */
     public void handleCancel() {
         dialogStage.close();
     }

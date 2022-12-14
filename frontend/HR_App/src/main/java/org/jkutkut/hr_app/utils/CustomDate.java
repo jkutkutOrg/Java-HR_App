@@ -3,6 +3,9 @@ package org.jkutkut.hr_app.utils;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
+/**
+ * Custom wrapper for java.sql.Date.
+ */
 public class CustomDate extends java.sql.Date {
     public CustomDate(long date) {
         super(date);
@@ -12,6 +15,10 @@ public class CustomDate extends java.sql.Date {
         super(year, month, day);
     }
 
+    /**
+     * @param date Date object
+     * @return CustomDate object
+     */
     public static CustomDate fromDate(Date date) {
         return new CustomDate(date.getTime());
     }

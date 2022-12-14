@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * This class is used to connect to a database.
+ */
 abstract public class AccessDB {
     private final String driver;
     private String url;

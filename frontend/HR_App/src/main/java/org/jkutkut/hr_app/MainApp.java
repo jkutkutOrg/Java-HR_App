@@ -15,8 +15,10 @@ import org.jkutkut.javafx.JavafxApp;
 
 import java.io.IOException;
 
+/**
+ * Main class of the application.
+ */
 public class MainApp extends JavafxApp {
-    // TODO doc
     // ********** Constants and variables **********
     public static final String APP_NAME = "HR App";
     private static final String LOGO = "file:src/main/resources/org/jkutkut/hr_app/images/logo.png";
@@ -50,6 +52,10 @@ public class MainApp extends JavafxApp {
         stage.show();
     }
 
+    /**
+     * Loads the layouts of the application.
+     * @throws IOException if the layouts cannot be loaded.
+     */
     private void loadLayouts() throws IOException {
         // App body
         FXMLLoader appLoader = new FXMLLoader(MainApp.class.getResource(RootController.XML));
@@ -75,32 +81,45 @@ public class MainApp extends JavafxApp {
     }
 
     // ********** App methods **********
+
+    /**
+     * Logs in the user.
+     */
     public void login() {
         db = HRDB.createInstance();
         rootController.setLoggedMode(true);
         go2("list");
     }
 
+    /**
+     * Changes the user of view.
+     * @param layout The layout to be shown.
+     */
     public void go2(String layout) {
         Controller controller;
         AnchorPane pane;
         switch (layout) {
-            case "list":
+            case "list" -> {
                 controller = listController;
                 pane = listLayout;
                 listController.setDB(db);
-                break;
-            case "add":
+            }
+            case "add" -> {
                 addEmployee();
                 return;
-            default:
+            }
+            default -> {
                 error("Layout not found", "Layout " + layout + " not found", "Please, contact the developer");
                 return;
+            }
         }
         controller.reset();
         rootLayout.setCenter(pane);
     }
 
+    /**
+     * Opens a dialog to add a new employee.
+     */
     public void addEmployee() {
         Employee employee = new Employee();
         try {
@@ -124,8 +143,14 @@ public class MainApp extends JavafxApp {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        info("Employee created", "Employee created successfully", "Employee " + employee.getFirstName() + " created successfully");
     }
 
+    /**
+     * Opens a dialog to edit an employee.
+     * @param employee The employee to be edited.
+     * @return The edited employee.
+     */
     public Employee editEmployee(Employee employee) {
         try {
             FXMLLoader loader = new FXMLLoader(MainApp.class.getResource(EditController.XML));
