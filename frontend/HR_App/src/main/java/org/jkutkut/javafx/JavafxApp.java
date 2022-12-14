@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -13,12 +14,14 @@ import java.util.Optional;
 abstract public class JavafxApp extends Application {
 
     private final String appName;
+    private final String logo;
 
     // ********** UI **********
     protected Stage primaryStage;
 
-    public JavafxApp(String appName) {
+    public JavafxApp(String appName, String logo) {
         this.appName = appName;
+        this.logo = logo;
     }
 
     // ********** Class methods **********
@@ -26,6 +29,7 @@ abstract public class JavafxApp extends Application {
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
         setTitle(appName);
+        primaryStage.getIcons().add(new Image(logo));
     }
 
     // ********** UX Methods **********

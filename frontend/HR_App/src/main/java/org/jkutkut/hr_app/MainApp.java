@@ -14,7 +14,7 @@ import java.io.IOException;
 public class MainApp extends JavafxApp {
     // ********** Constants and variables **********
     public static final String APP_NAME = "HR App";
-//    private static final String LOGO = "file:src/main/resources/org/jkutkut/hr_app/images/logo.png";
+    private static final String LOGO = "file:src/main/resources/org/jkutkut/hr_app/images/logo.png";
     private static final String APP_XML = "view/app.fxml";
     private static final String LOGIN_MENU_XML = "view/login.fxml";
     private static final int MIN_WIDTH = 800;
@@ -29,7 +29,7 @@ public class MainApp extends JavafxApp {
     }
 
     public MainApp() {
-        super(APP_NAME);
+        super(APP_NAME, LOGO);
     }
 
     @Override
