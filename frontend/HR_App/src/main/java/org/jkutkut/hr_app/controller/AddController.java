@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.jkutkut.hr_app.MainApp;
+import org.jkutkut.hr_app.db.HRDB;
 import org.jkutkut.hr_app.javabean.Employee;
 import org.jkutkut.javafx.Controller;
 
@@ -13,8 +15,9 @@ public class AddController extends Controller {
 
     // ********** UI **********
     private Stage dialogStage;
-//    private Employee employee;
+    private Employee employee;
     private boolean okClicked = false;
+    private HRDB db;
 
     @FXML
     private TextField txtfFirstName;
@@ -58,7 +61,23 @@ public class AddController extends Controller {
 
     public void handleSave() {
         // TODO check if the input is valid
-        // TODO add to DB
+
+//        employee.setFirstName(txtfFirstName.getText());
+//        employee.setLastName(txtfLastName.getText());
+//        employee.setEmail(txtfEmail.getText());
+//        employee.setPhone(txtfPhone.getText());
+//        employee.setHireDate(txtfHireDate.getText()); // TODO
+//        employee.setJobId(txtfJobId.getText());
+//        employee.setSalary(Double.parseDouble(txtfSalary.getText()));
+//        employee.setCommissionPct(Double.parseDouble(txtfCommissionPct.getText()));
+//        employee.setManagerId(Integer.parseInt(txtfManagerId.getText()));
+//        employee.setDepartmentId(Integer.parseInt(txtfDepartmentId.getText()));
+
+        int result = db.addEmployee(employee);
+        if (result == HRDB.FAILURE) {
+            mainApp.error("Error", "Error adding employee", "Not able to add the employee to the database");
+            return;
+        }
         okClicked = true;
         dialogStage.close();
     }
@@ -84,10 +103,14 @@ public class AddController extends Controller {
     }
 
     public void setEmployee(Employee employee) {
-        // TODO
+        this.employee = employee;
     }
 
     public boolean isOkClicked() {
         return okClicked;
+    }
+
+    public void setDB(HRDB db) {
+        this.db = db;
     }
 }

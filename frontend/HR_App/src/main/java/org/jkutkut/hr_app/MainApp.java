@@ -29,8 +29,6 @@ public class MainApp extends JavafxApp {
     private RootController rootController;
     private AnchorPane listLayout;
     private ListController listController;
-//    private AnchorPane addLayout;
-//    private AddController addController;
 
     // ********** Class methods **********
     public static void main(String[] args) {
@@ -69,12 +67,6 @@ public class MainApp extends JavafxApp {
         listLayout = listLoader.load();
         listController = listLoader.getController();
         listController.setMainApp(this);
-
-        // Add menu
-//        FXMLLoader addLoader = new FXMLLoader(MainApp.class.getResource(AddController.XML));
-//        addLayout = addLoader.load();
-//        addController = addLoader.getController();
-//        addController.setMainApp(this);
 
         // Default menu
         rootController.setLoggedMode(false);
@@ -121,6 +113,7 @@ public class MainApp extends JavafxApp {
 
             AddController controller = loader.getController();
             controller.setMainApp(this);
+            controller.setDB(db);
             controller.setDialogStage(dialogStage);
             controller.setEmployee(employee);
             controller.showAndWait();

@@ -16,6 +16,9 @@ import java.util.ArrayList;
  */
 public class HRDB extends PostgreSQLDB {
 
+    public static final int FAILURE = -1;
+    public static final int SUCCESS = 0;
+
     private static final String ENV_FILE = ".env";
     private static final String[] PATHS = {"../../db/", "../../", "../../db/scripts/"};
 
@@ -55,6 +58,12 @@ public class HRDB extends PostgreSQLDB {
 
     public ArrayList<Employee> getAllEmployees() {
         return sql2Employees(SQLQuery.get(this, 11, "SELECT * FROM " + Employee.TABLE_NAME));
+    }
+
+
+    public int addEmployee(Employee employee) {
+        // TODO: implement
+        return FAILURE;
     }
 
     private ArrayList<Employee> sql2Employees(ArrayList<Object[]> data) {

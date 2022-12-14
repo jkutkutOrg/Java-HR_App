@@ -151,6 +151,52 @@ public class Employee {
         return departmentId;
     }
 
+    // *********** SETTERS ***********
+    public void setId(int id) {
+        this.id.set(id);
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName.set(firstName);
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName.set(lastName);
+    }
+
+    public void setEmail(String email) {
+        this.email.set(email);
+    }
+
+    public void setPhone(String phone) {
+        this.phone.set(phone);
+    }
+
+    public void setHireDate(String hireDate) {
+//        this.hireDate.set(hireDate);
+        // TODO
+    }
+
+    public void setJobId(String jobId) {
+        this.jobId.set(jobId);
+    }
+
+    public void setSalary(double salary) {
+        this.salary.set(salary);
+    }
+
+    public void setCommissionPct(double commissionPct) {
+        this.commissionPct.set(commissionPct);
+    }
+
+    public void setManagerId(int managerId) {
+        this.managerId.set(managerId);
+    }
+
+    public void setDepartmentId(int departmentId) {
+        this.departmentId.set(departmentId);
+    }
+
     // *********** TOOLS ***********
 
     @Override
