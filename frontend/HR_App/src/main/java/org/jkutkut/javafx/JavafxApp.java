@@ -17,7 +17,7 @@ abstract public class JavafxApp extends Application {
     private final String logo;
 
     // ********** UI **********
-    protected Stage primaryStage;
+    protected Stage stage;
 
     public JavafxApp(String appName, String logo) {
         this.appName = appName;
@@ -27,19 +27,28 @@ abstract public class JavafxApp extends Application {
     // ********** Class methods **********
     @Override
     public void start(Stage stage) throws IOException {
-        primaryStage = stage;
+        this.stage = stage;
         setTitle(appName);
-        primaryStage.getIcons().add(new Image(logo));
+        this.stage.setOnCloseRequest(e -> {
+            e.consume();
+            exitApplication();
+        });
+        this.stage.getIcons().add(new Image(logo));
     }
 
     // ********** UX Methods **********
+
+    /**
+     * Changes the title of the application.
+     * @param title The new title.
+     */
     protected void setTitle(String title) {
-        if (primaryStage == null)
+        if (stage == null)
             return;
         if (title == null || title.isEmpty())
-            primaryStage.setTitle(appName);
+            stage.setTitle(appName);
         else
-            primaryStage.setTitle(appName + " - " + title);
+            stage.setTitle(appName + " - " + title);
     }
 
     /**
@@ -69,7 +78,7 @@ abstract public class JavafxApp extends Application {
      * @param content The content of the dialog.
      */
     protected void showAlert(Alert.AlertType type, String title, String header, String content) {
-        showAlert(primaryStage, type, title, header, content);
+        showAlert(stage, type, title, header, content);
     }
 
     /**
@@ -83,7 +92,7 @@ abstract public class JavafxApp extends Application {
     }
 
     /**
-     * Show an error message to the user.
+     * Shows an error message to the user.
      * @param title The title of the dialog.
      * @param header The header of the dialog.
      * @param msg The content of the dialog.
@@ -93,7 +102,7 @@ abstract public class JavafxApp extends Application {
     }
 
     /**
-     * Show an information message to the user.
+     * Shows an information message to the user.
      * @param title The title of the dialog.
      * @param header The header of the dialog.
      * @param msg The content of the dialog.
@@ -103,17 +112,20 @@ abstract public class JavafxApp extends Application {
     }
 
     /**
-     * Confirm something with the user.
+     * Confirms something with the user.
      * @param title The title of the dialog.
      * @param header The header of the dialog.
      * @param msg The content of the dialog.
      * @return True if the user confirmed. False otherwise.
      */
     public boolean confirm(String title, String header, String msg) {
-        Optional<ButtonType> result = showAlert(primaryStage, Alert.AlertType.CONFIRMATION, title, header, msg);
+        Optional<ButtonType> result = showAlert(stage, Alert.AlertType.CONFIRMATION, title, header, msg);
         return result.isPresent() && result.get() == ButtonType.OK;
     }
 
+    /**
+     * Exits the application.
+     */
     @FXML
     public void exitApplication() {
         boolean exit = confirm(appName, "Exit", "Are you sure you want to exit?");

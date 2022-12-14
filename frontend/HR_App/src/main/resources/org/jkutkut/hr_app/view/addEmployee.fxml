@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="680.0"
+            stylesheets="@../style/DarkTheme.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.jkutkut.hr_app.controller.AddController">
+   <children>
+<!--   TODO labels color    -->
+      <Label layoutX="54.0" layoutY="42.0" text="Id" textFill="black" AnchorPane.leftAnchor="54.0" AnchorPane.topAnchor="42.0" />
+      <Label layoutX="25.0" layoutY="92.0" text="First Name" textFill="black" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="92.0" />
+      <Label layoutX="25.0" layoutY="142.0" text="Last Name" textFill="black" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="142.0" />
+      <Label layoutX="42.0" layoutY="192.0" text="Email" textFill="black" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="192.0" />
+      <Label layoutX="40.0" layoutY="242.0" text="Phone" textFill="black" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="242.0" />
+      <Label layoutX="29.0" layoutY="292.0" text="Hire Date" textFill="black" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="292.0" />
+      <Label layoutX="340.0" layoutY="167.0" text="Job Id" textFill="black" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="167.0" />
+      <Label layoutX="338.0" layoutY="67.0" text="Salary" textFill="black" AnchorPane.leftAnchor="338.0" AnchorPane.topAnchor="67.0" />
+      <Label layoutX="328.0" layoutY="117.0" text="Comission" textFill="black" AnchorPane.leftAnchor="328.0" AnchorPane.topAnchor="117.0" />
+      <Label layoutX="321.0" layoutY="217.0" text="Manager Id" textFill="black" AnchorPane.leftAnchor="321.0" AnchorPane.topAnchor="217.0" />
+      <Label layoutX="310.0" layoutY="267.0" text="Department Id" textFill="black" AnchorPane.leftAnchor="310.0" AnchorPane.topAnchor="267.0" />
+
+      <TextField fx:id="txtfId" AnchorPane.leftAnchor="117.0" AnchorPane.topAnchor="42.0" />
+        <TextField fx:id="txtfFirstName" AnchorPane.leftAnchor="117.0" AnchorPane.topAnchor="92.0" />
+        <TextField fx:id="txtfLastName" AnchorPane.leftAnchor="117.0" AnchorPane.topAnchor="142.0" />
+        <TextField fx:id="txtfEmail" AnchorPane.leftAnchor="117.0" AnchorPane.topAnchor="192.0" />
+        <TextField fx:id="txtfPhone" AnchorPane.leftAnchor="117.0" AnchorPane.topAnchor="242.0" />
+        <TextField fx:id="txtfHireDate" AnchorPane.leftAnchor="117.0" AnchorPane.topAnchor="292.0" />
+        <TextField fx:id="txtfJobId" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="163.0" />
+        <TextField fx:id="txtfSalary" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="63.0" />
+        <TextField fx:id="txtfCommissionPct" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="113.0" />
+        <TextField fx:id="txtfManagerId" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="213.0" />
+        <TextField fx:id="txtfDepartmentId" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="263.0" />
+      <Button layoutX="298.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleSave" text="Aceptar" />
+      <Button layoutX="507.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancelar" />
+      <Button layoutX="405.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleClear" text="Limpiar" />
+   </children>
+</AnchorPane>
