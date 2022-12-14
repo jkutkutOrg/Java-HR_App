@@ -1,16 +1,20 @@
 package org.jkutkut.hr_app.javabean;
 
 import javafx.beans.property.*;
+import org.jkutkut.hr_app.utils.CustomDate;
 
 import java.sql.Date;
 
+/**
+ * Class representing an employee in a JavaFX application.
+ */
 public class Employee {
     private final IntegerProperty id;
     private final StringProperty firstName;
     private final StringProperty lastName;
     private final StringProperty email;
     private final StringProperty phone;
-    private final ObjectProperty<Date> hireDate;
+    private final ObjectProperty<CustomDate> hireDate;
     private final StringProperty jobId;
     private final DoubleProperty salary;
     private final DoubleProperty commissionPct;
@@ -29,6 +33,19 @@ public class Employee {
     public static final String MANAGER_ID = "MANAGER_ID";
     public static final String DEPARTMENT_ID = "DEPARTMENT_ID";
 
+    public static final String[] ATTRIBUTES = {
+        ID,
+        FIRST_NAME,
+        LAST_NAME,
+        EMAIL,
+        PHONE,
+        HIRE_DATE,
+        JOB_ID,
+        SALARY,
+        COMMISSION_PCT,
+        MANAGER_ID,
+        DEPARTMENT_ID
+    };
     public static final String PK = ID;
     public static final String TABLE_NAME = "EMPLOYEE";
 
@@ -46,7 +63,7 @@ public class Employee {
         this.departmentId = new SimpleIntegerProperty();
     }
 
-    public Employee(int id, String firstName, String lastName, String email, String phone, Date hireDate,
+    public Employee(int id, String firstName, String lastName, String email, String phone, CustomDate hireDate,
                     String jobId, double salary, double commissionPct, int managerId, int departmentId) {
         this();
         this.id.set(id);
@@ -107,7 +124,7 @@ public class Employee {
         return hireDate.get();
     }
 
-    public ObjectProperty<Date> hireDateProperty() {
+    public ObjectProperty<CustomDate> hireDateProperty() {
         return hireDate;
     }
 
@@ -149,6 +166,51 @@ public class Employee {
 
     public IntegerProperty departmentIdProperty() {
         return departmentId;
+    }
+
+    // *********** SETTERS ***********
+    public void setId(int id) {
+        this.id.set(id);
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName.set(firstName);
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName.set(lastName);
+    }
+
+    public void setEmail(String email) {
+        this.email.set(email);
+    }
+
+    public void setPhone(String phone) {
+        this.phone.set(phone);
+    }
+
+    public void setHireDate(CustomDate hireDate) {
+        this.hireDate.set(hireDate);
+    }
+
+    public void setJobId(String jobId) {
+        this.jobId.set(jobId);
+    }
+
+    public void setSalary(double salary) {
+        this.salary.set(salary);
+    }
+
+    public void setCommissionPct(double commissionPct) {
+        this.commissionPct.set(commissionPct);
+    }
+
+    public void setManagerId(int managerId) {
+        this.managerId.set(managerId);
+    }
+
+    public void setDepartmentId(int departmentId) {
+        this.departmentId.set(departmentId);
     }
 
     // *********** TOOLS ***********

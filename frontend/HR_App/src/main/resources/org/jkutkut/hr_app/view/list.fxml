@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jkutkut.hr_app.controller.ListController">
+   <children>
+      <TableView fx:id="table" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
+         <columns>
+            <TableColumn fx:id="idColumn" text="ID" />
+            <TableColumn fx:id="firstNameColumn" text="First Name" />
+            <TableColumn fx:id="lastNameColumn" text="Last Name" />
+            <TableColumn fx:id="emailColumn" text="Email" />
+            <TableColumn fx:id="phoneColumn" text="Phone" />
+            <TableColumn fx:id="hireDateColumn" text="Hire Date" />
+            <TableColumn fx:id="jobIdColumn" text="Job ID" />
+            <TableColumn fx:id="salaryColumn" text="Salary" />
+            <TableColumn fx:id="commissionPctColumn" text="Commission PCT" />
+            <TableColumn fx:id="managerIdColumn" text="Manager ID" />
+            <TableColumn fx:id="departmentIdColumn" text="Department ID" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Button mnemonicParsing="false" onAction="#handleSearchAll" text="Search All" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="40.0" />
+      <Button mnemonicParsing="false" onAction="#handleEdit" text="Edit" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="40.0" />
+      <Button mnemonicParsing="false" onAction="#handleDelete" text="Delete" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="40.0" />
+
+      <ChoiceBox fx:id="searchMenu" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="40.0">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="ID" />
+                <String fx:value="First Name" />
+                <String fx:value="Last Name" />
+                <String fx:value="Email" />
+                <String fx:value="Phone" />
+                <String fx:value="Hire Date" />
+                <String fx:value="Job ID" />
+                <String fx:value="Salary" />
+                <String fx:value="Commission PCT" />
+                <String fx:value="Manager ID" />
+                <String fx:value="Department ID" />
+            </FXCollections>
+         </items>
+      </ChoiceBox>
+      <TextField fx:id="txtfSearch" layoutX="599.0" layoutY="40.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="40.0" />
+      <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#handleSearch" text="Search" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0" />
+   </children>
+</AnchorPane>
