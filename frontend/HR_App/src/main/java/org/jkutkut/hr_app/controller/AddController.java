@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 import org.jkutkut.hr_app.MainApp;
 import org.jkutkut.hr_app.db.HRDB;
 import org.jkutkut.hr_app.javabean.Employee;
+import org.jkutkut.hr_app.utils.DateUtil;
+import org.jkutkut.hr_app.utils.EmployeePolicy;
 import org.jkutkut.javafx.Controller;
 
 public class AddController extends Controller {
@@ -60,26 +62,49 @@ public class AddController extends Controller {
     }
 
     public void handleSave() {
-        // TODO check if the input is valid
+        if (inputValid()) {
 
-//        employee.setFirstName(txtfFirstName.getText());
-//        employee.setLastName(txtfLastName.getText());
-//        employee.setEmail(txtfEmail.getText());
-//        employee.setPhone(txtfPhone.getText());
-//        employee.setHireDate(txtfHireDate.getText()); // TODO
-//        employee.setJobId(txtfJobId.getText());
-//        employee.setSalary(Double.parseDouble(txtfSalary.getText()));
-//        employee.setCommissionPct(Double.parseDouble(txtfCommissionPct.getText()));
-//        employee.setManagerId(Integer.parseInt(txtfManagerId.getText()));
-//        employee.setDepartmentId(Integer.parseInt(txtfDepartmentId.getText()));
+            employee.setFirstName(txtfFirstName.getText());
+            employee.setLastName(txtfLastName.getText());
+            employee.setEmail(txtfEmail.getText());
+            employee.setPhone(txtfPhone.getText());
+            employee.setHireDate(DateUtil.parse(txtfHireDate.getText()));
+            employee.setJobId(txtfJobId.getText());
+            employee.setSalary(Double.parseDouble(txtfSalary.getText()));
+            employee.setCommissionPct(Double.parseDouble(txtfCommissionPct.getText()));
+            employee.setManagerId(Integer.parseInt(txtfManagerId.getText()));
+            employee.setDepartmentId(Integer.parseInt(txtfDepartmentId.getText()));
 
-        int result = db.addEmployee(employee);
-        if (result == HRDB.FAILURE) {
-            mainApp.error("Error", "Error adding employee", "Not able to add the employee to the database");
-            return;
+            int result = db.addEmployee(employee);
+            if (result == HRDB.FAILURE) {
+                mainApp.error("Error", "Error adding employee", "Not able to add the employee to the database");
+                return;
+            }
+            okClicked = true;
+            dialogStage.close();
         }
-        okClicked = true;
-        dialogStage.close();
+    }
+
+    public boolean inputValid() {
+        EmployeePolicy policy = new EmployeePolicy();
+        String error = policy.test(
+                txtfFirstName.getText(),
+                txtfLastName.getText(),
+                txtfEmail.getText(),
+                txtfPhone.getText(),
+                txtfHireDate.getText(),
+                txtfJobId.getText(),
+                txtfSalary.getText(),
+                txtfCommissionPct.getText(),
+                txtfManagerId.getText(),
+                txtfDepartmentId.getText()
+        );
+        if (error == null || error.isEmpty()) {
+            return true;
+        } else {
+            mainApp.error("Error", "Invalid data", error);
+            return false;
+        }
     }
 
     public void handleCancel() {

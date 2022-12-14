@@ -172,9 +172,8 @@ public class Employee {
         this.phone.set(phone);
     }
 
-    public void setHireDate(String hireDate) {
-//        this.hireDate.set(hireDate);
-        // TODO
+    public void setHireDate(Date hireDate) {
+        this.hireDate.set(hireDate);
     }
 
     public void setJobId(String jobId) {
