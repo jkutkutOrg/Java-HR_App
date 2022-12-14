@@ -15,7 +15,8 @@ public class ListController extends Controller {
     private HRDB db;
 
     @FXML
-    public SplitMenuButton splitMenu;
+    public ChoiceBox<String> searchMenu;
+
     @FXML
     public TextField txtfSearch;
     @FXML
@@ -49,6 +50,8 @@ public class ListController extends Controller {
     // ********** Methods **********
     public void reset() {
         txtfSearch.setText("");
+        searchMenu.setValue("ID");
+        table.getItems().clear();
     }
 
     @FXML
@@ -82,7 +85,20 @@ public class ListController extends Controller {
 
     @FXML
     public void handleDelete() {
-        mainApp.error("Not implemented yet","Not implemented yet","Not implemented yet"); // TODO
+        Employee employee = getSelectedEmployee();
+        if (employee != null) {
+            int result = db.deleteEmployee(employee);
+            if (result == HRDB.SUCCESS) {
+                table.getItems().remove(employee);
+                mainApp.info("Employee deleted","Employee deleted successfully.",employee.getFirstName() + " is no longer in the database.");
+            }
+            else {
+                mainApp.error("Error deleting employee","Error deleting employee.","The database was not able to delete the employee.");
+            }
+        }
+        else {
+            mainApp.warn("No employee selected","No employee selected","Please select an employee to delete.");
+        }
     }
 
     @FXML
@@ -93,5 +109,9 @@ public class ListController extends Controller {
     // ********** Getters and setters **********
     public void setDB(HRDB db) {
         this.db = db;
+    }
+
+    public Employee getSelectedEmployee() {
+        return table.getSelectionModel().getSelectedItem();
     }
 }

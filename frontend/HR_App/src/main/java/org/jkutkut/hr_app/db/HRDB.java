@@ -94,6 +94,18 @@ public class HRDB extends PostgreSQLDB {
         return FAILURE;
     }
 
+    public int deleteEmployee(Employee employee) {
+        String query = String.format(
+                "DELETE FROM %s WHERE %s = ?",
+                EmployeeDB.TABLE,
+                EmployeeDB.ID
+        );
+        int result = SQLQuery.execute(this, query, employee.getId());
+        if (result == 1)
+            return SUCCESS;
+        return FAILURE;
+    }
+
     private int getNewId() {
         String query = String.format(
                 "SELECT MAX(%s) FROM %s",

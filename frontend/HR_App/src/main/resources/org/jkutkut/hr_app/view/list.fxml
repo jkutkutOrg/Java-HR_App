@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.jkutkut.hr_app.controller.ListController">
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jkutkut.hr_app.controller.ListController">
    <children>
       <TableView fx:id="table" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
          <columns>
@@ -25,26 +25,29 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button mnemonicParsing="false" text="Search All" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="40.0" onAction="#handleSearchAll" />
-      <Button mnemonicParsing="false" text="Edit" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="40.0" onAction="#handleEdit"/>
-      <Button mnemonicParsing="false" text="Delete" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="40.0" onAction="#handleDelete"/>
+      <Button mnemonicParsing="false" onAction="#handleSearchAll" text="Search All" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="40.0" />
+      <Button mnemonicParsing="false" onAction="#handleEdit" text="Edit" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="40.0" />
+      <Button mnemonicParsing="false" onAction="#handleDelete" text="Delete" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="40.0" />
 
-      <SplitMenuButton fx:id="splitMenu" mnemonicParsing="false" text="SplitMenuButton" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="40.0">
+      <ChoiceBox fx:id="searchMenu" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="40.0">
          <items>
-            <MenuItem mnemonicParsing="false" text="Id" />
-            <MenuItem mnemonicParsing="false" text="First Name" />
-            <MenuItem mnemonicParsing="false" text="Last Name" />
-            <MenuItem mnemonicParsing="false" text="Email" />
-            <MenuItem mnemonicParsing="false" text="Phone" />
-            <MenuItem mnemonicParsing="false" text="Hire Date" />
-            <MenuItem mnemonicParsing="false" text="Job ID" />
-            <MenuItem mnemonicParsing="false" text="Salary" />
-            <MenuItem mnemonicParsing="false" text="Commission PCT" />
-            <MenuItem mnemonicParsing="false" text="Manager ID" />
-            <MenuItem mnemonicParsing="false" text="Department ID" />
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="ID" />
+<!--               TODO remove some?-->
+                <String fx:value="First Name" />
+                <String fx:value="Last Name" />
+                <String fx:value="Email" />
+                <String fx:value="Phone" />
+                <String fx:value="Hire Date" />
+                <String fx:value="Job ID" />
+                <String fx:value="Salary" />
+                <String fx:value="Commission PCT" />
+                <String fx:value="Manager ID" />
+                <String fx:value="Department ID" />
+            </FXCollections>
          </items>
-      </SplitMenuButton>
+      </ChoiceBox>
       <TextField fx:id="txtfSearch" layoutX="599.0" layoutY="40.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="40.0" />
-      <Button fx:id="btnSearch" mnemonicParsing="false" text="Search" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0" onAction="#handleSearch"/>
+      <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#handleSearch" text="Search" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0" />
    </children>
 </AnchorPane>
