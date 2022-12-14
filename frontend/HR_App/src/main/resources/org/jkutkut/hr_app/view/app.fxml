@@ -6,22 +6,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import com.sun.javafx.scene.control.ContextMenuContent.ArrowMenuItem?>
 <BorderPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/DarkTheme.css"
             xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.jkutkut.hr_app.controller.RootController">
     <top>
-        <MenuBar BorderPane.alignment="CENTER">
+        <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
             <menus>
-<!--                <Menu mnemonicParsing="false" text="File">-->
-<!--                    <items>-->
-<!--                        <MenuItem mnemonicParsing="false" text="New" onAction="#handleNew"/>-->
-<!--                        <MenuItem mnemonicParsing="false" text="Open..." onAction="#handleOpen"/>-->
-<!--                        <MenuItem mnemonicParsing="false" text="Save" onAction="#handleSave"/>-->
-<!--                        <MenuItem mnemonicParsing="false" text="Save As..." onAction="#handleSaveAs"/>-->
-<!--                        <MenuItem mnemonicParsing="false" text="Exit" onAction="#handleExit"/>-->
-<!--                    </items>-->
-<!--                </Menu>-->
+                <Menu mnemonicParsing="false" text="Tools">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="List Employees" onAction="#handleList" />
+                        <MenuItem mnemonicParsing="false" text="Add Employee" onAction="#handleAdd" />
+                        <MenuItem mnemonicParsing="false" text="Edit Employee" onAction="#handleEdit" />
+                        <MenuItem mnemonicParsing="false" text="Delete Employee" onAction="#handleDelete" />
+                    </items>
+                </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
                         <MenuItem mnemonicParsing="false" text="About" onAction="#handleAbout"/>

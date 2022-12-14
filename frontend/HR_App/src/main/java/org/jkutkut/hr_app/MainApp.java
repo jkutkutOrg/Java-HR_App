@@ -21,8 +21,11 @@ public class MainApp extends JavafxApp {
     private static final int MIN_WIDTH = 800;
     private static final int MIN_HEIGHT = 500;
 
+    private HRDB db;
+
     // ********** UI **********
     private BorderPane rootLayout;
+    private RootController rootController;
 
     // ********** Class methods **********
     public static void main(String[] args) {
@@ -51,8 +54,8 @@ public class MainApp extends JavafxApp {
         // App body
         FXMLLoader appLoader = new FXMLLoader(MainApp.class.getResource(APP_XML));
         rootLayout = appLoader.load();
-        RootController appController = appLoader.getController();
-        appController.setMainApp(this);
+        rootController = appLoader.getController();
+        rootController.setMainApp(this);
 
         // Login menu
         FXMLLoader loginLoader = new FXMLLoader(MainApp.class.getResource(LOGIN_MENU_XML));
@@ -61,13 +64,22 @@ public class MainApp extends JavafxApp {
         controller.setMainApp(this);
 
         // Default menu
+        rootController.setLoggedMode(false);
         rootLayout.setCenter(loginMenu);
     }
 
     // ********** App methods **********
-    private HRDB db;
     public void login() {
         db = HRDB.createInstance();
-        rootLayout.setCenter(null); // TODO
+        rootController.setLoggedMode(true);
+        go2("list");
+    }
+
+    public void go2(String layout) {
+        switch (layout) {
+            case "list":
+                rootLayout.setCenter(null);
+                break;
+        }
     }
 }
