@@ -99,6 +99,8 @@ public class ListController extends Controller {
     public void handleDelete() {
         Employee employee = getSelectedEmployee();
         if (employee != null) {
+            if (!mainApp.confirm("Delete employee", "Are you sure you want to delete this employee?", "This action cannot be undone."))
+                return;
             int result = db.deleteEmployee(employee);
             if (result == HRDB.SUCCESS) {
                 table.getItems().remove(employee);

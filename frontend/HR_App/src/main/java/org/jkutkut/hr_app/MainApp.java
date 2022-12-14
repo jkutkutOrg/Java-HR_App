@@ -17,7 +17,6 @@ import java.io.IOException;
 
 public class MainApp extends JavafxApp {
     // TODO doc
-    // TODO confirm before delete
     // TODO change phones in DB to follow spanish format
     // TODO sql should have same policy as java
     // ********** Constants and variables **********
