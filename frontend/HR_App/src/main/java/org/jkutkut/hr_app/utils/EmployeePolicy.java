@@ -22,10 +22,6 @@ public class EmployeePolicy {
         protected int getMinLength() {
             return MIN_LENGTH;
         }
-
-        protected int getMaxLength() {
-            return MAX_LENGTH;
-        }
     }
 
     /**

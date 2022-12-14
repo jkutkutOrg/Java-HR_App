@@ -16,6 +16,10 @@ import org.jkutkut.javafx.JavafxApp;
 import java.io.IOException;
 
 public class MainApp extends JavafxApp {
+    // TODO doc
+    // TODO confirm before delete
+    // TODO change phones in DB to follow spanish format
+    // TODO sql should have same policy as java
     // ********** Constants and variables **********
     public static final String APP_NAME = "HR App";
     private static final String LOGO = "file:src/main/resources/org/jkutkut/hr_app/images/logo.png";
@@ -123,6 +127,33 @@ public class MainApp extends JavafxApp {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        info("Employee added", "Employee added successfully", "Employee " + employee.getFirstName() + " added successfully");
+    }
+
+    public Employee editEmployee(Employee employee) {
+        try {
+            FXMLLoader loader = new FXMLLoader(MainApp.class.getResource(EditController.XML));
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Update Employee");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(stage);
+
+            Scene scene = new Scene(loader.load());
+            dialogStage.setScene(scene);
+
+            EditController controller = loader.getController();
+            controller.setMainApp(this);
+            controller.setDB(db);
+            controller.setDialogStage(dialogStage);
+            controller.setEmployee(employee);
+            controller.reset();
+            controller.showAndWait();
+            if (controller.isOkClicked()) {
+                info("Employee updated", "Employee updated successfully", "Employee " + employee.getFirstName() + " updated successfully");
+                return employee;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

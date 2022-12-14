@@ -4,7 +4,6 @@ import org.jkutkut.db.PostgreSQLDB;
 import org.jkutkut.db.SQLQuery;
 import org.jkutkut.exception.InvalidDataException;
 import org.jkutkut.hr_app.javabean.Employee;
-import org.jkutkut.hr_app.javabean.EmployeeDB;
 
 import java.io.File;
 import java.sql.Date;
@@ -63,18 +62,18 @@ public class HRDB extends PostgreSQLDB {
         int id = getNewId();
         String query = String.format(
                 "INSERT INTO %s (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                EmployeeDB.TABLE,
-                EmployeeDB.ID,
-                EmployeeDB.FIRST_NAME,
-                EmployeeDB.LAST_NAME,
-                EmployeeDB.EMAIL,
-                EmployeeDB.PHONE,
-                EmployeeDB.HIRE_DATE,
-                EmployeeDB.JOB_ID,
-                EmployeeDB.SALARY,
-                EmployeeDB.COMMISSION_PCT,
-                EmployeeDB.MANAGER_ID,
-                EmployeeDB.DEPARTMENT_ID
+                Employee.TABLE_NAME,
+                Employee.ID,
+                Employee.FIRST_NAME,
+                Employee.LAST_NAME,
+                Employee.EMAIL,
+                Employee.PHONE,
+                Employee.HIRE_DATE,
+                Employee.JOB_ID,
+                Employee.SALARY,
+                Employee.COMMISSION_PCT,
+                Employee.MANAGER_ID,
+                Employee.DEPARTMENT_ID
         );
         int result = SQLQuery.execute(this, query,
                 id,
@@ -97,10 +96,45 @@ public class HRDB extends PostgreSQLDB {
     public int deleteEmployee(Employee employee) {
         String query = String.format(
                 "DELETE FROM %s WHERE %s = ?",
-                EmployeeDB.TABLE,
-                EmployeeDB.ID
+                Employee.TABLE_NAME,
+                Employee.ID
         );
         int result = SQLQuery.execute(this, query, employee.getId());
+        if (result == 1)
+            return SUCCESS;
+        return FAILURE;
+    }
+
+    public int updateEmployee(Employee old, Employee updated) {
+        String query = String.format(
+                "UPDATE %s SET %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ? WHERE %s = ?",
+                Employee.TABLE_NAME,
+                Employee.FIRST_NAME,
+                Employee.LAST_NAME,
+                Employee.EMAIL,
+                Employee.PHONE,
+                Employee.HIRE_DATE,
+                Employee.JOB_ID,
+                Employee.SALARY,
+                Employee.COMMISSION_PCT,
+                Employee.MANAGER_ID,
+                Employee.DEPARTMENT_ID,
+                Employee.ID
+        );
+
+        int result = SQLQuery.execute(this, query,
+                updated.getFirstName(),
+                updated.getLastName(),
+                updated.getEmail(),
+                updated.getPhone(),
+                updated.getHireDate(),
+                updated.getJobId(),
+                updated.getSalary(),
+                updated.getCommissionPct(),
+                updated.getManagerId(),
+                updated.getDepartmentId(),
+                old.getId()
+        );
         if (result == 1)
             return SUCCESS;
         return FAILURE;
@@ -109,8 +143,8 @@ public class HRDB extends PostgreSQLDB {
     private int getNewId() {
         String query = String.format(
                 "SELECT MAX(%s) FROM %s",
-                EmployeeDB.ID,
-                EmployeeDB.TABLE
+                Employee.ID,
+                Employee.TABLE_NAME
         );
         return (int) SQLQuery.get(this, 1, query).get(0)[0] + 1;
     }

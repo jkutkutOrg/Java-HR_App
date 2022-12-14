@@ -11,7 +11,7 @@ import org.jkutkut.javafx.Controller;
 
 public class EditController extends Controller {
     // ********** Constants and variables **********
-    public static final String XML = "view/addEmployee.fxml";
+    public static final String XML = "view/editEmployee.fxml";
 
     // ********** UI **********
     private Stage dialogStage;
@@ -19,6 +19,8 @@ public class EditController extends Controller {
     private boolean okClicked = false;
     private HRDB db;
 
+    @FXML
+    private TextField txtfId;
     @FXML
     private TextField txtfFirstName;
     @FXML
@@ -42,16 +44,17 @@ public class EditController extends Controller {
 
     // ********** Methods **********
     public void reset() {
-        txtfFirstName.setText("");
-        txtfLastName.setText("");
-        txtfEmail.setText("");
-        txtfPhone.setText("");
-        txtfHireDate.setText("");
-        txtfJobId.setText("");
-        txtfSalary.setText("");
-        txtfCommissionPct.setText("");
-        txtfManagerId.setText("");
-        txtfDepartmentId.setText("");
+        txtfId.setText(String.format("%d", employee.getId()));
+        txtfFirstName.setText(employee.getFirstName());
+        txtfLastName.setText(employee.getLastName());
+        txtfEmail.setText(employee.getEmail());
+        txtfPhone.setText(employee.getPhone());
+        txtfHireDate.setText(DateUtil.format(employee.getHireDate()));
+        txtfJobId.setText(employee.getJobId());
+        txtfSalary.setText(String.format("%.2f", employee.getSalary()));
+        txtfCommissionPct.setText(String.format("%.2f", employee.getCommissionPct()));
+        txtfManagerId.setText(String.format("%d", employee.getManagerId()));
+        txtfDepartmentId.setText(String.format("%d", employee.getDepartmentId()));
     }
 
     @FXML
@@ -61,18 +64,19 @@ public class EditController extends Controller {
 
     public void handleSave() {
         if (inputValid()) {
-            employee.setFirstName(txtfFirstName.getText());
-            employee.setLastName(txtfLastName.getText());
-            employee.setEmail(txtfEmail.getText());
-            employee.setPhone(txtfPhone.getText());
-            employee.setHireDate(DateUtil.parse(txtfHireDate.getText()));
-            employee.setJobId(txtfJobId.getText());
-            employee.setSalary(Double.parseDouble(txtfSalary.getText()));
-            employee.setCommissionPct(Double.parseDouble(txtfCommissionPct.getText()));
-            employee.setManagerId(Integer.parseInt(txtfManagerId.getText()));
-            employee.setDepartmentId(Integer.parseInt(txtfDepartmentId.getText()));
+            Employee newEmployee = new Employee();
+            newEmployee.setFirstName(txtfFirstName.getText());
+            newEmployee.setLastName(txtfLastName.getText());
+            newEmployee.setEmail(txtfEmail.getText());
+            newEmployee.setPhone(txtfPhone.getText());
+            newEmployee.setHireDate(DateUtil.parse(txtfHireDate.getText()));
+            newEmployee.setJobId(txtfJobId.getText());
+            newEmployee.setSalary(Double.parseDouble(txtfSalary.getText()));
+            newEmployee.setCommissionPct(Double.parseDouble(txtfCommissionPct.getText()));
+            newEmployee.setManagerId(Integer.parseInt(txtfManagerId.getText()));
+            newEmployee.setDepartmentId(Integer.parseInt(txtfDepartmentId.getText()));
 
-            int result = db.addEmployee(employee);
+            int result = db.updateEmployee(employee, newEmployee);
             if (result == HRDB.FAILURE) {
                 mainApp.error("Error", "Error adding employee", "Not able to add the employee to the database");
                 return;
@@ -85,16 +89,16 @@ public class EditController extends Controller {
     public boolean inputValid() {
         EmployeePolicy policy = new EmployeePolicy();
         String error = policy.test(
-                txtfFirstName.getText(),
-                txtfLastName.getText(),
-                txtfEmail.getText(),
-                txtfPhone.getText(),
-                txtfHireDate.getText(),
-                txtfJobId.getText(),
-                txtfSalary.getText(),
-                txtfCommissionPct.getText(),
-                txtfManagerId.getText(),
-                txtfDepartmentId.getText()
+            txtfFirstName.getText(),
+            txtfLastName.getText(),
+            txtfEmail.getText(),
+            txtfPhone.getText(),
+            txtfHireDate.getText(),
+            txtfJobId.getText(),
+            txtfSalary.getText(),
+            txtfCommissionPct.getText(),
+            txtfManagerId.getText(),
+            txtfDepartmentId.getText()
         );
         if (error == null || error.isEmpty()) {
             return true;

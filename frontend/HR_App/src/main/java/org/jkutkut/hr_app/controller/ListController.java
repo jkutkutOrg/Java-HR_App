@@ -68,8 +68,6 @@ public class ListController extends Controller {
         commissionPctColumn.setCellValueFactory(cellData -> cellData.getValue().commissionPctProperty().asString());
         managerIdColumn.setCellValueFactory(cellData -> cellData.getValue().managerIdProperty().asString());
         departmentIdColumn.setCellValueFactory(cellData -> cellData.getValue().departmentIdProperty().asString());
-
-        // TODO change the default value of selected item in search
     }
 
     @FXML
@@ -81,7 +79,18 @@ public class ListController extends Controller {
 
     @FXML
     public void handleEdit() {
-        mainApp.error("Not implemented yet","Not implemented yet","Not implemented yet"); // TODO
+        Employee employee = getSelectedEmployee();
+        if (employee == null) {
+            mainApp.warn("No employee selected","No employee selected","Please select an employee to modify.");
+            return;
+        }
+        Employee newEmployee = mainApp.editEmployee(employee);
+        if (newEmployee == null) // Nothing changed
+            return;
+        // Update table
+        table.getItems().remove(employee);
+        table.getItems().add(newEmployee);
+        table.refresh();
     }
 
     @FXML
