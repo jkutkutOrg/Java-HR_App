@@ -1,18 +1,15 @@
 package org.jkutkut.hr_app.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.jkutkut.hr_app.MainApp;
 import org.jkutkut.hr_app.db.HRDB;
 import org.jkutkut.hr_app.javabean.Employee;
-import org.jkutkut.hr_app.javabean.EmployeeDB;
 import org.jkutkut.hr_app.utils.DateUtil;
 import org.jkutkut.hr_app.utils.EmployeePolicy;
 import org.jkutkut.javafx.Controller;
 
-public class AddController extends Controller {
+public class EditController extends Controller {
     // ********** Constants and variables **********
     public static final String XML = "view/addEmployee.fxml";
 

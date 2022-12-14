@@ -52,6 +52,7 @@ public class ListController extends Controller {
         txtfSearch.setText("");
         searchMenu.setValue("ID");
         table.getItems().clear();
+        table.setPlaceholder(new Label(""));
     }
 
     @FXML
