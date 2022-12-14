@@ -4,6 +4,7 @@ import org.jkutkut.db.PostgreSQLDB;
 import org.jkutkut.db.SQLQuery;
 import org.jkutkut.exception.InvalidDataException;
 import org.jkutkut.hr_app.javabean.Employee;
+import org.jkutkut.hr_app.utils.CustomDate;
 import org.jkutkut.hr_app.utils.DateUtil;
 
 import java.io.File;
@@ -159,7 +160,7 @@ public class HRDB extends PostgreSQLDB {
                     (String) row[2], // last_name
                     (String) row[3], // email
                     (String) row[4], // phone_number
-                    (Date) row[5], // hire_date
+                    CustomDate.fromDate((Date) row[5]), // hire_date
                     (String) row[6], // job_id
                     (double) row[7], // salary
                     (double) row[8], // commission_pct

@@ -12,7 +12,8 @@ import java.time.format.DateTimeParseException;
  * @author Jkutkut and kiol12
  */
 public class DateUtil {
-    private static final String DATE_PATTERN = "dd/MM/yyyy";
+    private static final String DATE_PATTERN = "MM/dd/yyyy";
+    public static final String FORMAT = DATE_PATTERN;
 
     private static final DateTimeFormatter DATE_FORMATTER =
             DateTimeFormatter.ofPattern(DATE_PATTERN);
@@ -38,13 +39,13 @@ public class DateUtil {
      * @param dateString The date as String
      * @return the date object or null if it could not be converted
      */
-    public static Date parse(String dateString) {
+    public static CustomDate parse(String dateString) {
         try {
             String[] date = dateString.split("/");
             int year = Integer.parseInt(date[2]);
             int month = Integer.parseInt(date[1]);
             int day = Integer.parseInt(date[0]);
-            return new Date(year, month, day);
+            return new CustomDate(year, month, day);
         } catch (Exception e) {
             return null;
         }

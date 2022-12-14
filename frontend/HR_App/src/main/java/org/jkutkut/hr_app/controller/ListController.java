@@ -5,7 +5,6 @@ import javafx.scene.control.*;
 import org.jkutkut.exception.InvalidDataException;
 import org.jkutkut.hr_app.db.HRDB;
 import org.jkutkut.hr_app.javabean.Employee;
-import org.jkutkut.hr_app.utils.DateUtil;
 import org.jkutkut.javafx.Controller;
 
 import java.util.ArrayList;

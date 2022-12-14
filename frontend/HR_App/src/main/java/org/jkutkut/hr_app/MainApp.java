@@ -17,8 +17,6 @@ import java.io.IOException;
 
 public class MainApp extends JavafxApp {
     // TODO doc
-    // TODO change phones in DB to follow spanish format
-    // TODO sql should have same policy as java
     // ********** Constants and variables **********
     public static final String APP_NAME = "HR App";
     private static final String LOGO = "file:src/main/resources/org/jkutkut/hr_app/images/logo.png";

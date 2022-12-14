@@ -1,6 +1,7 @@
 package org.jkutkut.hr_app.javabean;
 
 import javafx.beans.property.*;
+import org.jkutkut.hr_app.utils.CustomDate;
 
 import java.sql.Date;
 
@@ -10,7 +11,7 @@ public class Employee {
     private final StringProperty lastName;
     private final StringProperty email;
     private final StringProperty phone;
-    private final ObjectProperty<Date> hireDate;
+    private final ObjectProperty<CustomDate> hireDate;
     private final StringProperty jobId;
     private final DoubleProperty salary;
     private final DoubleProperty commissionPct;
@@ -59,7 +60,7 @@ public class Employee {
         this.departmentId = new SimpleIntegerProperty();
     }
 
-    public Employee(int id, String firstName, String lastName, String email, String phone, Date hireDate,
+    public Employee(int id, String firstName, String lastName, String email, String phone, CustomDate hireDate,
                     String jobId, double salary, double commissionPct, int managerId, int departmentId) {
         this();
         this.id.set(id);
@@ -120,7 +121,7 @@ public class Employee {
         return hireDate.get();
     }
 
-    public ObjectProperty<Date> hireDateProperty() {
+    public ObjectProperty<CustomDate> hireDateProperty() {
         return hireDate;
     }
 
@@ -185,7 +186,7 @@ public class Employee {
         this.phone.set(phone);
     }
 
-    public void setHireDate(Date hireDate) {
+    public void setHireDate(CustomDate hireDate) {
         this.hireDate.set(hireDate);
     }
 
