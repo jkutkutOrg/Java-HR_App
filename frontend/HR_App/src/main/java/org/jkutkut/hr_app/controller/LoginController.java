@@ -13,6 +13,8 @@ import org.jkutkut.javafx.Controller;
  * @author kiol12 and jkutkut
  */
 public class LoginController extends Controller {
+    // ********** Constants and variables **********
+    public static final String XML = "view/login.fxml";
 
     @FXML
     private TextField txtfUser;
@@ -24,6 +26,11 @@ public class LoginController extends Controller {
     private Button btnLogin;
 
     // ********** Methods **********
+    public void reset() {
+        txtfUser.setText("");
+        password.setText("");
+    }
+
     @FXML
     private void initialize() {}
 
@@ -37,10 +44,11 @@ public class LoginController extends Controller {
         String pass = password.getText();
 
         ConfiguratorDB configuratorDB = new ConfiguratorDB("../../db/.env", "localhost");
-        if (configuratorDB.get("DB_USR").equals(user) && configuratorDB.get("DB_USR_PASSWD").equals(pass)) {
-            mainApp.login();
-        } else {
-            mainApp.error("Login error", "Invalid credentials", "Please, check your credentials");
-        }
+//        if (configuratorDB.get("DB_USR").equals(user) && configuratorDB.get("DB_USR_PASSWD").equals(pass)) {
+//            mainApp.login();
+//        } else {
+//            mainApp.error("Login error", "Invalid credentials", "Please, check your credentials");
+//        }
+        mainApp.login(); // TODO remove this line
     }
 }

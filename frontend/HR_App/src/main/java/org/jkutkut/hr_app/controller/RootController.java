@@ -11,8 +11,14 @@ import org.jkutkut.javafx.Controller;
  * @author kiol12 and jkutkut
  */
 public class RootController extends Controller {
+    // ********** Constants and variables **********
+    public static final String XML = "view/app.fxml";
+
     @FXML
     private MenuBar menuBar;
+
+    // ********** Methods **********
+    public void reset() {}
 
     /**
      * Changes the elements to show on the menu based on the logged status of the user.
