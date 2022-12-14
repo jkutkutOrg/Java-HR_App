@@ -4,6 +4,7 @@ import org.jkutkut.db.PostgreSQLDB;
 import org.jkutkut.db.SQLQuery;
 import org.jkutkut.exception.InvalidDataException;
 import org.jkutkut.hr_app.javabean.Employee;
+import org.jkutkut.hr_app.utils.DateUtil;
 
 import java.io.File;
 import java.sql.Date;
@@ -167,6 +168,43 @@ public class HRDB extends PostgreSQLDB {
             ));
         }
         return employees;
+    }
+
+    public ArrayList<Employee> searchBy(int keyIndex, String value) {
+        if (keyIndex < 0 || keyIndex >= Employee.ATRIBUTES.length)
+            throw new InvalidDataException("Invalid key.");
+        String key = Employee.ATRIBUTES[keyIndex];
+        Object valueObject;
+        try {
+            switch (keyIndex) {
+                case 0: // id
+                case 9: // manager_id
+                case 10: // department_id
+                    System.out.println("int");
+                    valueObject = Integer.parseInt(value);
+                    break;
+                case 7: // salary
+                case 8: // commission_pct
+                    System.out.println("double");
+                    valueObject = Double.parseDouble(value);
+                    break;
+                case 5: // hire_date
+                    System.out.println("date");
+                    valueObject = DateUtil.parse(value);
+                    break;
+                default:
+                    valueObject = value;
+            }
+        }
+        catch (Exception e) {
+            throw new InvalidDataException("Invalid value.");
+        }
+        String query = String.format(
+                "SELECT * FROM %s WHERE %s = ?",
+                Employee.TABLE_NAME,
+                key
+        );
+        return sql2Employees(SQLQuery.get(this, 11, query, valueObject));
     }
 }
 

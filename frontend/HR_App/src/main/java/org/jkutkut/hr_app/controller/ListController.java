@@ -2,8 +2,10 @@ package org.jkutkut.hr_app.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.jkutkut.exception.InvalidDataException;
 import org.jkutkut.hr_app.db.HRDB;
 import org.jkutkut.hr_app.javabean.Employee;
+import org.jkutkut.hr_app.utils.DateUtil;
 import org.jkutkut.javafx.Controller;
 
 import java.util.ArrayList;
@@ -113,7 +115,24 @@ public class ListController extends Controller {
 
     @FXML
     public void handleSearch() {
-        mainApp.error("Not implemented yet","Not implemented yet","Not implemented yet"); // TODO
+        int searchBy = searchMenu.getSelectionModel().getSelectedIndex();
+        String key = txtfSearch.getText().trim();
+        if (key.isEmpty()) {
+            mainApp.warn("No search key","No search key","Please enter a search key.");
+            return;
+        }
+        try {
+            ArrayList<Employee> employees = db.searchBy(searchBy, key);
+            table.getItems().clear();
+            if (employees == null) {
+                mainApp.warn("No results","No results","No employees were found with the search key.");
+                return;
+            }
+            table.getItems().addAll(employees);
+        }
+        catch (InvalidDataException e) {
+            mainApp.error("Error on database","Not able to obtain the data",e.getMessage());
+        }
     }
 
     // ********** Getters and setters **********

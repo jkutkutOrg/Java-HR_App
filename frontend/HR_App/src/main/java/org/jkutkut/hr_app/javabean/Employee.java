@@ -29,6 +29,19 @@ public class Employee {
     public static final String MANAGER_ID = "MANAGER_ID";
     public static final String DEPARTMENT_ID = "DEPARTMENT_ID";
 
+    public static final String[] ATRIBUTES = {
+        ID,
+        FIRST_NAME,
+        LAST_NAME,
+        EMAIL,
+        PHONE,
+        HIRE_DATE,
+        JOB_ID,
+        SALARY,
+        COMMISSION_PCT,
+        MANAGER_ID,
+        DEPARTMENT_ID
+    };
     public static final String PK = ID;
     public static final String TABLE_NAME = "EMPLOYEE";
 
