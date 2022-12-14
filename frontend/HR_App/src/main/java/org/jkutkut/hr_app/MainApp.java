@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.jkutkut.hr_app.db.HRDB;
 import org.jkutkut.javafx.JavafxApp;
 
 import java.io.IOException;
@@ -64,4 +65,9 @@ public class MainApp extends JavafxApp {
     }
 
     // ********** App methods **********
+    private HRDB db;
+    public void login() {
+        db = HRDB.createInstance();
+        rootLayout.setCenter(null); // TODO
+    }
 }
