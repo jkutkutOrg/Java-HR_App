@@ -2,12 +2,17 @@ package org.jkutkut.hr_app.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.jkutkut.hr_app.db.HRDB;
 import org.jkutkut.hr_app.javabean.Employee;
 import org.jkutkut.javafx.Controller;
+
+import java.util.ArrayList;
 
 public class ListController extends Controller {
     // ********** Constants and variables **********
     public static final String XML = "view/list.fxml";
+
+    private HRDB db;
 
     @FXML
     public SplitMenuButton splitMenu;
@@ -63,5 +68,30 @@ public class ListController extends Controller {
         // TODO change the default value of selected item in search
     }
 
-    // TODO add logic
+    @FXML
+    public void handleSearchAll() {
+        ArrayList<Employee> employees = db.getAllEmployees();
+        table.getItems().clear();
+        table.getItems().addAll(employees);
+    }
+
+    @FXML
+    public void handleEdit() {
+        mainApp.error("Not implemented yet","Not implemented yet","Not implemented yet"); // TODO
+    }
+
+    @FXML
+    public void handleDelete() {
+        mainApp.error("Not implemented yet","Not implemented yet","Not implemented yet"); // TODO
+    }
+
+    @FXML
+    public void handleSearch() {
+        mainApp.error("Not implemented yet","Not implemented yet","Not implemented yet"); // TODO
+    }
+
+    // ********** Getters and setters **********
+    public void setDB(HRDB db) {
+        this.db = db;
+    }
 }

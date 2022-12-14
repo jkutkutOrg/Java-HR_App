@@ -87,6 +87,7 @@ public class MainApp extends JavafxApp {
             case "list":
                 controller = listController;
                 pane = listLayout;
+                listController.setDB(db);
                 break;
             case "add":
                 addEmployee();

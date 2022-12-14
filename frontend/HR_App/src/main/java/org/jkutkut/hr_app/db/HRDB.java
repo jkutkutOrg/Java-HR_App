@@ -55,12 +55,9 @@ public class HRDB extends PostgreSQLDB {
 
     // *********** METHODS ***********
 
-
-
     public ArrayList<Employee> getAllEmployees() {
         return sql2Employees(SQLQuery.get(this, 11, "SELECT * FROM " + Employee.TABLE_NAME));
     }
-
 
     public int addEmployee(Employee employee) {
         int id = getNewId();

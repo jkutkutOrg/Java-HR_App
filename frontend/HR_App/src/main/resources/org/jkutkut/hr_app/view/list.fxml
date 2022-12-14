@@ -3,7 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jkutkut.hr_app.controller.ListController">
+<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.jkutkut.hr_app.controller.ListController">
    <children>
       <TableView fx:id="table" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
          <columns>
@@ -23,9 +25,9 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button mnemonicParsing="false" text="Search All" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="40.0" />
-      <Button mnemonicParsing="false" text="Edit" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="40.0" />
-      <Button mnemonicParsing="false" text="Delete" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="40.0" />
+      <Button mnemonicParsing="false" text="Search All" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="40.0" onAction="#handleSearchAll" />
+      <Button mnemonicParsing="false" text="Edit" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="40.0" onAction="#handleEdit"/>
+      <Button mnemonicParsing="false" text="Delete" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="40.0" onAction="#handleDelete"/>
 
       <SplitMenuButton fx:id="splitMenu" mnemonicParsing="false" text="SplitMenuButton" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="40.0">
          <items>
@@ -43,6 +45,6 @@
          </items>
       </SplitMenuButton>
       <TextField fx:id="txtfSearch" layoutX="599.0" layoutY="40.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="40.0" />
-      <Button fx:id="btnSearch" mnemonicParsing="false" text="Search" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0" />
+      <Button fx:id="btnSearch" mnemonicParsing="false" text="Search" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0" onAction="#handleSearch"/>
    </children>
 </AnchorPane>
