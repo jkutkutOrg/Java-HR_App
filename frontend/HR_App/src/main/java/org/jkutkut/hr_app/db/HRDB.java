@@ -4,6 +4,7 @@ import org.jkutkut.db.PostgreSQLDB;
 import org.jkutkut.db.SQLQuery;
 import org.jkutkut.exception.InvalidDataException;
 import org.jkutkut.hr_app.javabean.Employee;
+import org.jkutkut.hr_app.javabean.EmployeeDB;
 
 import java.io.File;
 import java.sql.Date;
@@ -54,7 +55,7 @@ public class HRDB extends PostgreSQLDB {
 
     // *********** METHODS ***********
 
-    private static final String EMPLOYEE_TABLE = "EMPLOYEE";
+
 
     public ArrayList<Employee> getAllEmployees() {
         return sql2Employees(SQLQuery.get(this, 11, "SELECT * FROM " + Employee.TABLE_NAME));
@@ -62,8 +63,47 @@ public class HRDB extends PostgreSQLDB {
 
 
     public int addEmployee(Employee employee) {
-        // TODO: implement
+        int id = getNewId();
+        String query = String.format(
+                "INSERT INTO %s (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                EmployeeDB.TABLE,
+                EmployeeDB.ID,
+                EmployeeDB.FIRST_NAME,
+                EmployeeDB.LAST_NAME,
+                EmployeeDB.EMAIL,
+                EmployeeDB.PHONE,
+                EmployeeDB.HIRE_DATE,
+                EmployeeDB.JOB_ID,
+                EmployeeDB.SALARY,
+                EmployeeDB.COMMISSION_PCT,
+                EmployeeDB.MANAGER_ID,
+                EmployeeDB.DEPARTMENT_ID
+        );
+        int result = SQLQuery.execute(this, query,
+                id,
+                employee.getFirstName(),
+                employee.getLastName(),
+                employee.getEmail(),
+                employee.getPhone(),
+                employee.getHireDate(),
+                employee.getJobId(),
+                employee.getSalary(),
+                employee.getCommissionPct(),
+                employee.getManagerId(),
+                employee.getDepartmentId()
+        );
+        if (result == 0)
+            return SUCCESS;
         return FAILURE;
+    }
+
+    private int getNewId() {
+        String query = String.format(
+                "SELECT MAX(%s) FROM %s",
+                EmployeeDB.ID,
+                EmployeeDB.TABLE
+        );
+        return (int) SQLQuery.get(this, 1, query).get(0)[0] + 1;
     }
 
     private ArrayList<Employee> sql2Employees(ArrayList<Object[]> data) {

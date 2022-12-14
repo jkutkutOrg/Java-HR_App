@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import org.jkutkut.hr_app.MainApp;
 import org.jkutkut.hr_app.db.HRDB;
 import org.jkutkut.hr_app.javabean.Employee;
+import org.jkutkut.hr_app.javabean.EmployeeDB;
 import org.jkutkut.hr_app.utils.DateUtil;
 import org.jkutkut.hr_app.utils.EmployeePolicy;
 import org.jkutkut.javafx.Controller;
@@ -62,8 +63,20 @@ public class AddController extends Controller {
     }
 
     public void handleSave() {
+//        Employee employee = new Employee();
+//        employee.setFirstName("TestName");
+//        employee.setLastName("TestLastName");
+//        employee.setEmail("test@test.com");
+//        employee.setPhone("123456789");
+//        employee.setHireDate(DateUtil.parse("01/01/2018"));
+//        employee.setJobId("12312");
+//        employee.setSalary(1000);
+//        employee.setCommissionPct(0);
+//        employee.setManagerId(0);
+//        employee.setDepartmentId(0);
+//        db.addEmployee(employee);
+//        // TODO remove
         if (inputValid()) {
-
             employee.setFirstName(txtfFirstName.getText());
             employee.setLastName(txtfLastName.getText());
             employee.setEmail(txtfEmail.getText());
