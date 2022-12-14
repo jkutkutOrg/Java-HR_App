@@ -35,7 +35,7 @@ public class RootController extends Controller {
 
     @FXML
     private void handleAbout() {
-        mainApp.info(MainApp.APP_NAME, "About", "Author: Kiol12 and Jkutkut");
+        mainApp.info(MainApp.APP_NAME, "About", "Authors: Kiol12 and Jkutkut. Based on the JavaFX tutorial by SWTESTACADEMY.");
     }
 
     @FXML
@@ -46,15 +46,5 @@ public class RootController extends Controller {
     @FXML
     private void handleAdd() {
         mainApp.go2("add");
-    }
-
-    @FXML
-    private void handleEdit() {
-        mainApp.go2("edit");
-    }
-
-    @FXML
-    private void handleDelete() {
-        mainApp.go2("delete");
     }
 }

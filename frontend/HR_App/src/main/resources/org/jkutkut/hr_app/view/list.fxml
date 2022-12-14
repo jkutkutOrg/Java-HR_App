@@ -33,7 +33,6 @@
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="ID" />
-<!--               TODO remove some?-->
                 <String fx:value="First Name" />
                 <String fx:value="Last Name" />
                 <String fx:value="Email" />

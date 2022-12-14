@@ -45,7 +45,7 @@ abstract public class JavafxApp extends Application {
     protected void setTitle(String title) {
         if (stage == null)
             return;
-        if (title == null || title.isEmpty())
+        if (title == null || title.isEmpty() || title.equals(appName))
             stage.setTitle(appName);
         else
             stage.setTitle(appName + " - " + title);

@@ -23,8 +23,8 @@ public class MainApp extends JavafxApp {
     // ********** Constants and variables **********
     public static final String APP_NAME = "HR App";
     private static final String LOGO = "file:src/main/resources/org/jkutkut/hr_app/images/logo.png";
-    private static final int MIN_WIDTH = 800;
-    private static final int MIN_HEIGHT = 500;
+    private static final int MIN_WIDTH = 1000;
+    private static final int MIN_HEIGHT = 600;
 
     private HRDB db;
 
