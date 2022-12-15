@@ -186,25 +186,15 @@ public class HRDB extends PostgreSQLDB {
         String key = Employee.ATTRIBUTES[keyIndex];
         Object valueObject;
         try {
-            switch (keyIndex) {
-                case 0: // id
-                case 9: // manager_id
-                case 10: // department_id
-                    System.out.println("int");
-                    valueObject = Integer.parseInt(value);
-                    break;
-                case 7: // salary
-                case 8: // commission_pct
-                    System.out.println("double");
-                    valueObject = Double.parseDouble(value);
-                    break;
-                case 5: // hire_date
-                    System.out.println("date");
-                    valueObject = DateUtil.parse(value);
-                    break;
-                default:
-                    valueObject = value;
-            }
+            valueObject = switch (keyIndex) {
+                case 0, 9, 10 -> // id, manager_id, department_id
+                        Integer.parseInt(value); // salary
+                case 7, 8 -> // commission_pct
+                        Double.parseDouble(value);
+                case 5 -> // hire_date
+                        DateUtil.parse(value);
+                default -> value;
+            };
         }
         catch (Exception e) {
             throw new InvalidDataException("Invalid value.");
